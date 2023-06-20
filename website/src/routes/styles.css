@@ -32,11 +32,11 @@
     font-family: 'Poppins', sans-serif;
     overflow: auto;
     scrollbar-width: thin;
-    color: var(--some-other-value);
     transition: 0.2s;
 }
 body{
     background-color: var(--some-value);
+    color: var(--some-other-value);
 
 
 }
