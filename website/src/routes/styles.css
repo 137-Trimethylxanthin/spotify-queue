@@ -1,2 +1,42 @@
+/* automatic/manual light mode */
+:root, :root.light {
+    --some-value: black;
+    --some-other-value: white;
+}
+
+/* automatic dark mode */
+/* ❗️ keep the rules in sync with the manual dark mode below! */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --some-value: white;
+        --some-other-value: black;
+    }
+}
+
+/* manual dark mode
+/* ❗️ keep the rules in sync with the automatic dark mode above! */
+:root.dark {
+    --some-value: white;
+    --some-other-value: black;
+}
 
 
+
+
+
+
+*{
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: auto;
+    scrollbar-width: thin;
+    color: var(--some-other-value);
+    transition: 0.2s;
+}
+body{
+    background-color: var(--some-value);
+
+
+}
