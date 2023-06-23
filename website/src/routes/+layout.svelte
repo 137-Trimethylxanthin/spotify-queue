@@ -10,9 +10,9 @@
 </nav>
 
 
-<div class="content">
+<main>
     <slot></slot>
-</div>
+</main>
 
 
 
@@ -20,20 +20,11 @@
     <h1>footer</h1>
 </footer>
 <style>
-    .content{
-        margin-top: 8vh;
-        margin-bottom: 8vh;
-    }
 
     .top-nav{
         background-color: var(--bg-color-2);
-        overflow: hidden;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1;
         padding: 1vh;
-        display: inline-block;
+        text-align: center;
         color: var(--text-color-2);
     }
     .top-nav ul{
@@ -54,13 +45,9 @@
     .bottom-footer{
         background-color: var(--bg-color-2);
         color: var(--text-color-2);
-        bottom: 0;
-        left: 0;
-        padding: 10px;
-        position: fixed;
+        padding: 20px;
         text-align: center;
-        width: 100%;
-        z-index: 1;
+
     }
 </style>
 

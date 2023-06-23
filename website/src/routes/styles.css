@@ -44,8 +44,17 @@
     overflow: auto;
     scrollbar-width: thin;
     transition: 0.2s;
+    color-scheme: dark !important;
 }
 body{
-    background-color: var(--bg-color-1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     color: var(--text-color-1);
+    background-color: var(--bg-color-1);
+}
+main{
+    flex: 1;
+    margin-top: 8vh;
+    margin-bottom: 8vh;
 }
