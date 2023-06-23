@@ -1,5 +1,127 @@
+<script lang="ts">
+    /** @type {import('./$types').PageServerLoad} */
+    import{ _Song as Song , _currentSong as currentSong, _queue as queue} from "./+page";
 
+
+    queue[0] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
+    queue[1] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
+    queue[2] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
+
+
+</script>
 <body>
-    <h1>Hello and welcome to my site!</h1>
-    <a href="/about">About my site</a>
+    <div class="title">
+        <h1>Spotify Music</h1>
+        <hr>
+    </div>
+
+
+    <div class="cplaying">
+        <h2>Currently playing</h2>
+        <img src="{currentSong.cover}" alt="">
+        <h3 id="currentTitle">{currentSong.title}</h3>
+    </div>
+
+    <div class="queue">
+        <h2>Queue:</h2>
+        {#each queue as Song}
+            <div class="song">
+                <img src="{Song.cover}" alt="">
+                <ul>
+                    <li><h3>{Song.title}</h3></li>
+                    <li><p>{Song.id}, {Song.artist}</p></li>
+                </ul>
+
+
+            </div>
+
+
+        {/each}
+
+    </div>
 </body>
+
+
+<style>
+    .title {
+        text-align: center;
+        margin-bottom: 4vh;
+    }
+    .title h1 {
+        font-size: 8vh;
+        color: var(--actzent-color-1);
+    }
+    .title hr {
+        width: 50%;
+        margin: auto;
+        height: 2px;
+        background-color: var(--text-color-1);
+    }
+
+    .cplaying {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        border: var(--actzent-color-1) solid 2px;
+        width: fit-content;
+        margin: 4vh auto 0 auto;
+        border-radius: 5px;
+        padding: 1vh 2vh 1vh 2vh;
+    }
+    .cplaying h2 {
+        font-size: 5vh;
+        margin-bottom: 2vh;
+    }
+    .cplaying img {
+        width: 30vh;
+        height: 30vh;
+        border-radius: 25%;
+        margin: 0 auto 2vh auto;
+    }
+    .cplaying h3 {
+        font-size: 3.2vh;
+    }
+
+    .queue {
+        text-align: center;
+        margin: 4vh auto 0 auto;
+        border: var(--actzent-color-1) solid 2px;
+        width: fit-content;
+        border-radius: 5px;
+        padding: 1vh 2vh 1vh 2vh;
+    }
+
+    .queue h2 {
+        font-size: 3.2vh;
+    }
+
+    .queue .song h3 {
+        font-size: 2.5vh;
+        display: flex;
+    }
+    .queue .song p {
+        font-size: 2vh;
+        display: flex;
+    }
+    .queue .song img {
+        width: 10vh;
+        height: 10vh;
+        border-radius: 50%;
+        margin: 1vh 0 1vh 0;
+        display: flex;
+    }
+    .queue .song {
+        display: flex;
+        margin: 2vh 0 2vh 0;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .queue .song ul {
+        flex-direction: column;
+        margin: 0 0 0 2vh;
+        list-style: none;
+    }
+
+
+</style>
