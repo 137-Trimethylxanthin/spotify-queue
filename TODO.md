@@ -32,3 +32,7 @@
 
 # Documentation
 ## whats that
+# Backend
+- [ ] learn API
+- [ ] lern Spotify API
+- [ ] make an API
