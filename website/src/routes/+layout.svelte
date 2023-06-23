@@ -26,12 +26,8 @@
 <footer class="bottom-footer">
     <h1>footer</h1>
 </footer>
-{#if y < 50}
+{#if y < 110}
     <style>
-        main{
-            margin-top: 15vh;
-            transition: all 0.1s ;
-        }
         .top-nav{
             background-color: var(--bg-color-2);
             padding:  3vh 0 3vh 0;

@@ -6,6 +6,8 @@
     queue[0] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
     queue[1] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
     queue[2] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
+    let inputValue = "";
+    let recomend_songs = [];
 
 
 </script>
@@ -31,18 +33,60 @@
                     <li><h3>{Song.title}</h3></li>
                     <li><p>{Song.id}, {Song.artist}</p></li>
                 </ul>
-
-
             </div>
-
-
         {/each}
+    </div>
+
+    <div class="addSong">
+        <h2>Suche hier:</h2>
+        <input bind:value={inputValue} type="text" id="search" placeholder="Type here">
+        {#if inputValue === ""}
+
+        <p>
+            Du kannst entweder nach einen title suchen <br>
+            oder du kannst einfach den link hier rein kopieren
+        </p>
+        {:else}
+            <p>Suche nach: {inputValue}</p>
+            {#each recomend_songs as song}
+                <div class="song">
+                    <img src="{song.cover}" alt="">
+                    <ul>
+                        <li><h3>{song.title}</h3></li>
+                        <li><p>{song.id}, {song.artist}</p></li>
+                    </ul>
+                </div>
+            {/each}
+        {/if}
 
     </div>
 </body>
 
 
 <style>
+    .addSong {
+        text-align: center;
+        margin: 4vh auto 0 auto;
+        border: var(--actzent-color-1) solid 2px;
+        width: fit-content;
+        border-radius: 5px;
+        padding: 1vh 2vh 1vh 2vh;
+    }
+    .addSong h2 {
+        font-size: 3.2vh;
+    }
+    .addSong p{
+        font-size: 2.5vh;
+
+    }
+    .addSong input {
+        font-size: 2.5vh;
+        margin: 2vh 0 2vh 0;
+    }
+    .addSong button {
+        font-size: 2.5vh;
+        margin: 2vh 0 2vh 0;
+    }
     .title {
         text-align: center;
         margin-bottom: 4vh;
@@ -57,6 +101,7 @@
         height: 2px;
         background-color: var(--text-color-1);
     }
+
 
     .cplaying {
         display: flex;
