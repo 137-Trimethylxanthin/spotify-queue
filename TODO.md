@@ -11,8 +11,8 @@
 - [ ] Nicer looking input
 - [ ] Nicer looking border
 
-# Code
-- [ ] Search songs
+# Frontend code (JS)
+- [ ] Search songs (API call)
 - [ ] api call to get songs (IDK when spotify will time me out)
 - [ ] api call to get picture of songs
 - [ ] drag and drop songs in queue
@@ -33,7 +33,7 @@ class _Song:
     cover: string;
     id: string;
 
-thats how the returned json should look like
+that's how the returned json should look like
 
 
 - [ ] api call to get songs (IDK when spotify will time me out)
@@ -85,7 +85,4 @@ thats how the returned json should look like
 
 # Documentation
 ## whats that
-# Backend
-- [ ] learn API
-- [ ] lern Spotify API
-- [ ] make an API
+

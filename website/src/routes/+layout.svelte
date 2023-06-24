@@ -7,7 +7,6 @@
 <nav class="top-nav">
     <h1 class="left">top nav</h1>
     <ul>
-        <li>{y}</li>
         <li><button on:click={_toggleDarkMode}>Toggle</button></li>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
