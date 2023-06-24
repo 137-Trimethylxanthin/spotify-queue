@@ -85,3 +85,7 @@ thats how the returned json should look like
 
 # Documentation
 ## whats that
+# Backend
+- [ ] learn API
+- [ ] lern Spotify API
+- [ ] make an API
