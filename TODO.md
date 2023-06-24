@@ -42,7 +42,8 @@ thats how the returned json should look like
 - [ ] api call to get song currently at (always zero if in queue)
 - [ ] api call to get song artist
 - [ ] api call to get song album
-- [ ] api call to get song album art
+- [ ] api call to get song album art (cover)
+- [ ] api call to get song infos at once of all queued songs
 - [ ] api call to serch for songs by name (returns list of songs with the above info)
 - [ ] api call from above check if it is a link or a search
 - [ ] if above is a link, get the infos of song
