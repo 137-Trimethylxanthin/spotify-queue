@@ -35,7 +35,7 @@ class _Song:
 
 that's how the returned json should look like
 
-
+- [ ] read spotify api token from file
 - [ ] api call to get songs (IDK when spotify will time me out)
 - [ ] api call to get picture of songs
 - [ ] api call to get song duration
