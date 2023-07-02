@@ -1,4 +1,5 @@
 # Style
+
 - [x] Oky layout
 - [x] Dark mode and light mode with toggle
 - [x] Responsive
@@ -12,6 +13,7 @@
 - [ ] Nicer looking border
 
 # Frontend code (JS)
+
 - [ ] Search songs (API call)
 - [ ] api call to get songs (IDK when spotify will time me out)
 - [ ] api call to get picture of songs
@@ -20,9 +22,10 @@
 - [ ] show song duration
 - [ ] remove debug y in navbar
 
-
 # Backend (python)
+
 ### info
+
 class _Song:
 
     title: string;
@@ -72,17 +75,18 @@ that's how the returned json should look like
 - [ ] api call to get idle playlist
 - [ ] api call to set idle playlist
 
-
 # Features
+
 ## non currently :(
 
-
 # Tests
+
 ## did non :)
 
 # Bugs
+
 ## many
 
 # Documentation
-## whats that
 
+## whats that

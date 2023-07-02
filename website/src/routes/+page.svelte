@@ -7,7 +7,7 @@
     queue[1] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
     queue[2] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
     let inputValue = "";
-    let recomend_songs = [];
+    let recommend_songs: any[] = [];
 
 
 </script>
@@ -48,7 +48,7 @@
         </p>
         {:else}
             <p>Suche nach: {inputValue}</p>
-            {#each recomend_songs as song}
+            {#each recommend_songs as song}
                 <div class="song">
                     <img src="{song.cover}" alt="">
                     <ul>
@@ -67,7 +67,7 @@
     .addSong {
         text-align: center;
         margin: 4vh auto 0 auto;
-        border: var(--actzent-color-1) solid 2px;
+        border: var(--akzent-color-1) solid 2px;
         width: fit-content;
         border-radius: 5px;
         padding: 1vh 2vh 1vh 2vh;

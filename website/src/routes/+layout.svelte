@@ -1,6 +1,6 @@
 <script>
     import './styles.css';
-    import {_toggleDarkMode} from "./+layout.ts";
+    import {_toggleDarkMode} from "./+layout";
     let y = 0;
 </script>
 
