@@ -18,6 +18,9 @@ export class _Song {
   }
 }
 
+
+
+
 export let _currentSong: _Song = new _Song("test_title", "test_artist", "test_duration", "test_cover", "1");
 export let _queue: _Song[] = [];
 let queueIndex: number = 0;
@@ -29,3 +32,5 @@ let volume: number = 0.5;
 let muted: boolean = false;
 let currentTime: number = 0;
 let duration: number = 0;
+
+console.log("test");

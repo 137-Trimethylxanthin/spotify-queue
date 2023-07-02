@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { element } from "svelte/internal";
     /** @type {import('./$types').PageServerLoad} */
     import{ _Song as Song , _currentSong as currentSong, _queue as queue} from "./+page";
 
@@ -8,7 +9,38 @@
     queue[2] = new Song("test_title", "test_artist", "test_duration", "test_cover", "test_id");
     let inputValue = "";
     let recommend_songs: any[] = [];
+    let allRecommend_songs: any[] = [];
+    let page = 1;
+    let maxPage: number = 1;
 
+    async function searchSongs(querey:string) {
+        page = 1;
+        for (let i = 0; i < 10; i++) {
+            allRecommend_songs[i] = new Song("test_title", "test_artist", "test_duration", "test_cover", i.toString());
+        }
+        maxPage = Math.floor(allRecommend_songs.length / 3);
+
+        for (let i = 0; i < 3 && i < allRecommend_songs.length; i++) {
+            recommend_songs.push(allRecommend_songs[i]);
+        }
+    }
+
+    function changePage(direction: number) {
+        page += direction;
+        if (page < 1) {
+            page = 1;
+        }
+        else if (page > maxPage) {
+            page = maxPage;
+        }
+        else{
+            recommend_songs = [];
+            for (let i = 0; i < 3 && i < allRecommend_songs.length; i++) {
+                recommend_songs.push(allRecommend_songs[i + (page - 1) * 3]);
+            }
+        }
+        
+    }
 
 </script>
 <body>
@@ -25,6 +57,7 @@
     </div>
 
     <div class="queue">
+        <hr>
         <h2>Queue:</h2>
         {#each queue as Song}
             <div class="song">
@@ -35,28 +68,51 @@
                 </ul>
             </div>
         {/each}
+        <hr>
     </div>
+
+
 
     <div class="addSong">
         <h2>Suche hier:</h2>
-        <input bind:value={inputValue} type="text" id="search" placeholder="Type here">
-        {#if inputValue === ""}
+        <input 
+            bind:value={inputValue} 
+            on:input={async () => {
+                if (inputValue.length > 0) {
+                    await searchSongs(inputValue);
+                }
+                else {
+                    recommend_songs = [];
+                }
+            }}
+            type="text" id="search" placeholder="Type here"
+        >
 
+        {#if inputValue === ""}
         <p>
             Du kannst entweder nach einen title suchen <br>
             oder du kannst einfach den link hier rein kopieren
         </p>
         {:else}
             <p>Suche nach: {inputValue}</p>
-            {#each recommend_songs as song}
-                <div class="song">
-                    <img src="{song.cover}" alt="">
-                    <ul>
-                        <li><h3>{song.title}</h3></li>
-                        <li><p>{song.id}, {song.artist}</p></li>
-                    </ul>
-                </div>
+            {#if recommend_songs.length > 0}
+                <hr>
+                {#each recommend_songs as song}
+                    <div class="song">
+                        <img src="{song.cover}" alt="">
+                        <ul>
+                            <li><h3>{song.title}</h3></li>
+                            <li><p>{song.id}, {song.artist}</p></li>
+                        </ul>
+                    </div>
             {/each}
+            <hr>
+            <p>Page: {page}/{maxPage}</p>
+            <button on:click={() => changePage(-1)}>Back</button>
+            <button on:click={() => changePage(1)}>Next</button>
+            {:else}
+                <p>Keine Ergebnisse</p>
+            {/if}
         {/if}
 
     </div>
@@ -67,9 +123,7 @@
     .addSong {
         text-align: center;
         margin: 4vh auto 0 auto;
-        border: var(--akzent-color-1) solid 2px;
         width: fit-content;
-        border-radius: 5px;
         padding: 1vh 2vh 1vh 2vh;
     }
     .addSong h2 {
@@ -138,6 +192,7 @@
 
     .queue h2 {
         font-size: 3.2vh;
+        margin: 2vh 0 2vh 0;
     }
 
     .queue .song h3 {
