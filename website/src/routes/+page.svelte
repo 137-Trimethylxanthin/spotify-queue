@@ -12,17 +12,32 @@
     let allRecommend_songs: any[] = [];
     let page = 1;
     let maxPage: number = 1;
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    
 
-    async function searchSongs(querey:string) {
-        page = 1;
+    async function requestSongsTest() {
+        await sleep(3000); 
+        allRecommend_songs = [];
         for (let i = 0; i < 10; i++) {
             allRecommend_songs[i] = new Song("test_title", "test_artist", "test_duration", "test_cover", i.toString());
         }
-        maxPage = Math.floor(allRecommend_songs.length / 3);
+        return allRecommend_songs;
+    }
 
-        for (let i = 0; i < 3 && i < allRecommend_songs.length; i++) {
-            recommend_songs.push(allRecommend_songs[i]);
-        }
+    function searchSongs(query: string): Promise<void> {
+        return new Promise<void>(async (resolve) => {
+            recommend_songs = [];
+            page = 1;
+            //#TODO: why tfuck rennst du 2 mal nach einem await du scheiss (fix me)
+            allRecommend_songs = await requestSongsTest();
+            maxPage = Math.floor(allRecommend_songs.length / 3);
+            if (allRecommend_songs.length === 0) {
+                throw new Error("No songs found");
+            }else{
+                changePage(0);
+                resolve();
+            }
+        });
     }
 
     function changePage(direction: number) {
@@ -39,7 +54,6 @@
                 recommend_songs.push(allRecommend_songs[i + (page - 1) * 3]);
             }
         }
-        
     }
 
 </script>
@@ -77,9 +91,9 @@
         <h2>Suche hier:</h2>
         <input 
             bind:value={inputValue} 
-            on:input={async () => {
+            on:input={() => {
                 if (inputValue.length > 0) {
-                    await searchSongs(inputValue);
+                    searchSongs(inputValue);
                 }
                 else {
                     recommend_songs = [];
@@ -95,7 +109,9 @@
         </p>
         {:else}
             <p>Suche nach: {inputValue}</p>
-            {#if recommend_songs.length > 0}
+            {#await searchSongs(inputValue)}
+                <p>Searching ...</p>
+            {:then}
                 <hr>
                 {#each recommend_songs as song}
                     <div class="song">
@@ -105,14 +121,15 @@
                             <li><p>{song.id}, {song.artist}</p></li>
                         </ul>
                     </div>
-            {/each}
-            <hr>
-            <p>Page: {page}/{maxPage}</p>
-            <button on:click={() => changePage(-1)}>Back</button>
-            <button on:click={() => changePage(1)}>Next</button>
-            {:else}
-                <p>Keine Ergebnisse</p>
-            {/if}
+                {/each}
+                <hr>
+                <p>Page: {page}/{maxPage}, {recommend_songs.length}, {allRecommend_songs.length}</p>
+                <button on:click={() => changePage(-1)}>Back</button>
+                <button on:click={() => changePage(1)}>Next</button>
+            {:catch error}
+                <p>Something went wrong: {error.message}</p>
+            {/await}
+
         {/if}
 
     </div>
